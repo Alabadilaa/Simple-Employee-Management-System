@@ -6,17 +6,11 @@ const Employee = () => {
     const [ lastName, setLastName] = useState('')
     const [ email, setEmail] = useState('')
 
-    function handleFirstName(e) {
-        setFirstName(e.target.value);
-    }
+    const handleFirstName = (e) => setFirstName(e.target.value);
 
-    function handleLastName(e) {
-        setLastName(e.target.value);
-    }
+    const handleLastName = (e) => setLastName(e.target.value);
 
-    function handleEmail(e) {
-        setEmail(e.target.value);
-    }
+    const handleEmail = (e) => setEmail(e.target.value);
 
     function saveEmployee(e) {
         e.preventDefault();
@@ -60,7 +54,7 @@ const Employee = () => {
                         <div className='form-group mb-2'>
                             <label className='form-label'>Email</label>
                             <input 
-                                type='text' 
+                                type='text ' 
                                 placeholder='Enter Employee Email' 
                                 name='email' 
                                 value={email}
