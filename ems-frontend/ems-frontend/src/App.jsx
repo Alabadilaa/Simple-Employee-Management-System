@@ -2,14 +2,21 @@ import './App.css'
 import Footer from './Components/Footer/Footer'
 import Header from './Components/Header/Header'
 import ListEmployees from './Components/ListEmployees'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
 
   return (
     <>
-     <Header />
-      <ListEmployees />
+    <BrowserRouter>
+      <Header />
+        <Routes>
+          <Route path='/' element = { <ListEmployees/> }></Route>
+          <Route path='/employees' element = { <ListEmployees/> }></Route>
+        </Routes>
       <Footer />
+    </BrowserRouter>
+     
     </>
   )
 }
