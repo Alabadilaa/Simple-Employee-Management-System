@@ -53,7 +53,7 @@ const Employee = () => {
                                 name='email' 
                                 value={email}
                                 className='form-control'
-                                onChange={setEmail(e.target.value)}>
+                                onChange={(e) => setEmail(e.target.value)}>
                             </input>
                         </div>
 
