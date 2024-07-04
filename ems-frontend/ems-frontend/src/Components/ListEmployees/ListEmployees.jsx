@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { listEmployees } from '../../Service/EmployeeService'
+import { deleteEmployee, listEmployees } from '../../Service/EmployeeService'
 import { useNavigate } from 'react-router-dom'
 import './ListEmployees.css'
 
@@ -9,12 +9,16 @@ const ListEmployees = () => {
 
     const navigator = useNavigate();
 
-    useEffect(() => {
+    function getAllEmployees () {
         listEmployees().then((response) =>  {
             setEmployees(response.data);
         }).catch(error => {
             console.error(error);
         })
+    }
+
+    useEffect(() => {
+        getAllEmployees();
     }, [])
 
     function addNewEmployee() {
@@ -23,6 +27,14 @@ const ListEmployees = () => {
 
     function updateEmployee(id) {
         navigator(`/edit-employee/${id}`)
+    }
+
+    function removeEmployee(id) {
+        deleteEmployee(id).then((response) => {
+            getAllEmployees();
+        }).catch(error => {
+            console.error(error);
+        })
     }
 
   return (
@@ -49,6 +61,7 @@ const ListEmployees = () => {
                             <td>{employee.email}</td>
                             <td>
                                 <button className='btn btn-primary' onClick={() => updateEmployee(employee.id)}>Update</button>
+                                <button className='btn btn-danger' onClick={() => removeEmployee(employee.id)}>Delete</button>
                             </td>
                         </tr>
                     )
